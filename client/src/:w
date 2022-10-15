@@ -1,0 +1,10 @@
+.sideBar {
+    flex: 9;
+}
+.image {
+    width: 50%;
+}
+
+.about {
+    margin-left: 700px;
+}

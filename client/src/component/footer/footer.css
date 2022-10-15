@@ -1,0 +1,26 @@
+.footer {
+    color: #fff;
+    background-color: #ff00ff;
+    padding: 10px;
+
+    text-align: center;
+}
+.footerTop {
+    margin-bottom: 20px;
+}
+.footerIcon {
+    padding: 10px;
+    cursor: pointer;
+
+    font-size: xx-large;
+}
+.footerList {
+    list-style: none;
+}
+.footerListItem {
+    display: inline-block;
+    padding: 10px;
+}
+.copy {
+    margin-top: 30px 20px;
+}
