@@ -8,10 +8,13 @@ import Login from "./component/Pages/login/Login";
 import Register from "./component/Pages/register/Register";
 import Settings from "./component/Pages/settings/Settings";
 import { Routes, Route, Navigate } from "react-router-dom";
+import {useState} from 'react'
 //let navigate = useNavigate();
 function App() {
     const currentUser = true;
+    //const [data, setData] = useState(props.data)
 
+    //const FormData = data.map((data)) =>()
     return (
         <>
             <TopBar />
