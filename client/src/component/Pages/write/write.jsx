@@ -4,7 +4,7 @@ import {useState} from 'react'
 
 
 export default function Write() {
-    const [data, setData] = useState(
+    const [post, setPost] = useState(
         {
         title :"",
         text : "",
@@ -12,14 +12,14 @@ export default function Write() {
     })
 
     function handle(e) {
-        const newdata ={...data, [e.target.name]: e.target.value}
-        setData(newdata)
+        const newPost ={...post, [e.target.id]: e.target.value}
+        setPost(newPost)
      
     }
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log(data)
+        console.log(post)
        
     }
     return (
@@ -27,7 +27,8 @@ export default function Write() {
             <div className="write">
                 <form onSubmit={handleSubmit} 
                 className="writeForm">
-                    <img className="writeImage" src={img} alt=""></img>
+{/*                     
+                    <img className="writeImage" src='' alt=""></img> */}
                     <div className="writeFormGroup">
                         <label htmlFor="fileInput">
                             <i className=" addIcon fas fa-plus"></i>
@@ -46,7 +47,7 @@ export default function Write() {
                             id = "title"
                             autoFocus={true}
                             
-                            value ={data.value}
+                            value ={post.title}
                             onChange = {handle}
                             
                             
@@ -61,14 +62,14 @@ export default function Write() {
                             type="text"
                             className="writeInput writeText"
                             id = "text"
-                            value = {data.value}
+                            value = {post.text}
                             onChange={handle}
                             
                             
                         ></textarea>
                     </div>
 
-                    <button className="writeSubmit" type = "button">
+                    <button onClick={handleSubmit} className="writeSubmit" type = "button">
                         Publish
                     </button>
                 </form>
