@@ -1,6 +1,9 @@
 import "./write.css";
 import img from "../../../asset/background.jpg";
 import {useState} from 'react'
+import axios from 'axios'
+const baseUrl = 'http://localhost:3030/user/createUser'
+
 
 
 export default function Write() {
@@ -19,7 +22,11 @@ export default function Write() {
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log(post)
+        //console.log(post)
+        axios.post(baseUrl, {post}).then(res=>{
+            console.log(res)
+            console.log(res.data)
+        })
        
     }
     return (

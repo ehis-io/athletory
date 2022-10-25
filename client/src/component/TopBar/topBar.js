@@ -5,12 +5,25 @@ function TopBar() {
     const user = true;
     return (
         <div className="top">
-            <div className="topLeft">
-                <i className="topIcon fab fa-facebook-square"></i>
-                <i className="topIcon fab fa-twitter-square"></i>
-                <i className="topIcon fab fa-instagram"></i>
-            </div>
+            <div className="topList">
+            {user ? (
+                    <img className="topImg" src={Logo} alt="logo" />
+                ) : (
+                    <ul className="topList">
+                        <li className="topListItem">
+                            <Link className="link" to="/login">
+                                LOGIN
+                            </Link>
+                        </li>
 
+                        <li className="topListItem">
+                            <Link className="link" to="/register">
+                                REGISTER
+                            </Link>
+                        </li>
+                    </ul>
+                )}
+            </div>
             <div className="topCenter">
                 <ul className="topList">
                     <li className="topListItem">
@@ -35,30 +48,20 @@ function TopBar() {
                             </Link>
                         </li>
                     ) : null}
-                    <li>{user && "LOGOUT"}</li>
+                    <li className="topListItem">{user && "LOGOUT"}</li>
                 </ul>
             </div>
-
-            <div className="topRight">
-                {user ? (
-                    <img className="topImg" src={Logo} alt="logo" />
-                ) : (
-                    <ul className="topList">
-                        <li className="topListItem">
-                            <Link className="link" to="/login">
-                                LOGIN
-                            </Link>
-                        </li>
-
-                        <li className="topListItem">
-                            <Link className="link" to="/register">
-                                REGISTER
-                            </Link>
-                        </li>
-                    </ul>
-                )}
-                <i className="topSearchIcon fas fa-search"></i>
+            <div className="topSearchIcon">
+            {/*<input  className ='topSearch topListItem' placeholder= 'Search' type="text"/>
+            <i className="topSearchIcon  fas fa-search"></i>*/}
             </div>
+            <div className="topRight">
+                
+                <i className="topIcon fab fa-facebook-square"></i>
+                <i className="topIcon fab fa-twitter-square"></i>
+                <i className="topIcon fab fa-instagram"></i>
+            </div> 
+            
         </div>
     );
 }

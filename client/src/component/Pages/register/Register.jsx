@@ -1,13 +1,18 @@
 import "./register.css"
 import {useState} from 'react'
-
+import axios from 'axios'
+const userUrl= 'http://localhost:3030/user/user'
   
 export default function Register() {
 
   const [user, setUser] = useState({
-    username:"",
-    email:"",
-    Password:"",
+    id:"",
+      firstname:"",
+      lastname:"",
+      photo_id:"",
+      bio:"",
+      email:"",
+      password:"",
   })
 
   function handle(e){
@@ -19,19 +24,37 @@ export default function Register() {
     e.preventDefault()
     console.log(user)
     setUser({
-      username:"",
+      id:"",
+      firstname:"",
+      lastname:"",
+      photo_id:"",
+      bio:"",
       email:"",
       password:"",
     })
+
+    axios.post(userUrl, {user}).then(res=>{
+      console.log(res)
+      console.log(res.data)
+    }
+   
+    )
   }
     return (
         <div className="register">
       <span className="registerTitle">Register</span>
       <form className="registerForm">
-        <label>Username</label>
+        <label>
+          Firstname</label>
         <input 
         onChange={handle}
-        className="registerInput" id ='username' type="text" placeholder="Enter your username..." value= {user.username}/>
+        className="registerInput" id ='firstname' type="text" placeholder="Enter your firstname..." value= {user.firstname}/>
+         <label>Lastname</label>
+        <input 
+        onChange={handle}
+        className="registerInput" id ='lastname' type="text" placeholder="Enter your lastname..." value= {user.lastname}/>
+        
+        
         <label>Email</label>
         <input
         onChange={handle} className="registerInput" id ='email' type="text" placeholder="Enter your email..." value= {user.email}/>
