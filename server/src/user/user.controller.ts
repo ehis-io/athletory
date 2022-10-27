@@ -1,7 +1,5 @@
 import { Controller, Body, Post, Get, Param, Put, Delete, HttpException, HttpStatus } from '@nestjs/common';
 import { UserService} from './user.service'
-import { DeleteResult, Repository, UpdateResult } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from 'src/dto/create_user.dto';
 import { User } from 'src/model/user.entity';
 
@@ -21,7 +19,7 @@ import { User } from 'src/model/user.entity';
 
 @Controller('user')
 export class UserController {
-    constructor(private readonly userService: UserService) {}
+    constructor(private userService: UserService) {}
 
    @Get('findAll')
     getAllUser() {

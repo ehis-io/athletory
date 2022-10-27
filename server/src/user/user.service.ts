@@ -12,7 +12,7 @@ import { User } from '../model/user.entity';
 export class UserService {
     constructor(
     @InjectRepository(User)
-    private  readonly userRepository: Repository<User>,
+    private userRepository: Repository<User>,
    
     ){}
     findAll(): Observable<User[]>{

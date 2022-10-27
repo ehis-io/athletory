@@ -6,39 +6,37 @@ const userUrl= 'http://localhost:3030/user/user'
 export default function Register() {
 
   const [user, setUser] = useState({
-    id:"",
-      firstname:"",
-      lastname:"",
-      photo_id:"",
-      bio:"",
-      email:"",
-      password:"",
-  })
+    "firstname":"",
+    "lastname":"",
+    "email":"",
+    "password":"",
+  },
+  )
 
   function handle(e){
-    const newUser ={...user, [e.target.id]: e.target.value}
-    setUser(newUser)
+
+    setUser({...user, [e.target.id]: e.target.value})
+    console.log(user)
   }
   
   function handleSubmit(e){
     e.preventDefault()
     console.log(user)
-    setUser({
-      id:"",
-      firstname:"",
-      lastname:"",
-      photo_id:"",
-      bio:"",
-      email:"",
-      password:"",
-    })
 
-    axios.post(userUrl, {user}).then(res=>{
+    
+
+    axios.post(userUrl, user).then(res=>{
       console.log(res)
       console.log(res.data)
+      
     }
-   
     )
+    setUser=({
+      "firstname":"",
+      "lastname":"",
+      "email":"",
+      "password":"",
+    })
   }
     return (
         <div className="register">
@@ -48,11 +46,19 @@ export default function Register() {
           Firstname</label>
         <input 
         onChange={handle}
-        className="registerInput" id ='firstname' type="text" placeholder="Enter your firstname..." value= {user.firstname}/>
+        className="registerInput" 
+        id ='firstname' 
+        type="text" 
+        placeholder="Enter your firstname..." 
+        value= {user.firstname}/>
          <label>Lastname</label>
         <input 
         onChange={handle}
-        className="registerInput" id ='lastname' type="text" placeholder="Enter your lastname..." value= {user.lastname}/>
+        className="registerInput" 
+        id ='lastname' 
+        type="text" 
+        placeholder="Enter your lastname..." 
+        value= {user.lastname}/>
         
         
         <label>Email</label>

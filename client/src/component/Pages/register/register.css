@@ -11,7 +11,8 @@
     ),
     url("https://images.pexels.com/photos/317355/pexels-photo-317355.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-size: cover;
-  padding-top: 15px;
+  padding: 15px 0 15px 0;
+  
 }
 
 .registerTitle {
@@ -20,8 +21,10 @@
 
 .registerForm {
   margin-top: 20px;
+  
   display: flex;
   flex-direction: column;
+  
 }
 
 .registerForm > label {

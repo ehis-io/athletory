@@ -2,16 +2,19 @@ import "./write.css";
 import img from "../../../asset/background.jpg";
 import {useState} from 'react'
 import axios from 'axios'
-const baseUrl = 'http://localhost:3030/user/createUser'
+const baseUrl = 'http://localhost:3030/post/post'
 
 
 
 export default function Write() {
     const [post, setPost] = useState(
         {
-        title :"",
-        text : "",
-        
+            post_title:"",
+            post_text:"",
+            post_image_id:"",
+            user_id:"",
+
+            
     })
 
     function handle(e) {
@@ -23,7 +26,7 @@ export default function Write() {
     function handleSubmit(e){
         e.preventDefault()
         //console.log(post)
-        axios.post(baseUrl, {post}).then(res=>{
+        axios.post(baseUrl, post).then(res=>{
             console.log(res)
             console.log(res.data)
         })
@@ -51,10 +54,10 @@ export default function Write() {
                             type="text"
                             placeholder="title"
                             className="writeInput"
-                            id = "title"
+                            id = "post_title"
                             autoFocus={true}
                             
-                            value ={post.title}
+                            value ={post.post_title}
                             onChange = {handle}
                             
                             
@@ -68,8 +71,8 @@ export default function Write() {
                             placeholder="Write article here..."
                             type="text"
                             className="writeInput writeText"
-                            id = "text"
-                            value = {post.text}
+                            id = "post_text"
+                            value = {post.text_text}
                             onChange={handle}
                             
                             
