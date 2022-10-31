@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Observable, from } from 'rxjs';
+import { CreateUserDto } from 'src/dto/create_user.dto';
 import { Repository, DataSource, UpdateResult, DeleteResult } from 'typeorm';
 import { User } from '../model/user.entity';
 
@@ -11,7 +12,7 @@ import { User } from '../model/user.entity';
 export class UserService {
     constructor(
     @InjectRepository(User)
-    private  readonly userRepository: Repository<User>,
+    private userRepository: Repository<User>,
    
     ){}
     findAll(): Observable<User[]>{
@@ -19,55 +20,35 @@ export class UserService {
 
     }
 
-    // findById(Id : number, Id = id):Observable<User[]>{
-    //     return from(this.userRepository.findBy(id))
-    // }
+    async findById(id:number): Promise<User>{
+        return await this.userRepository.findOneBy({id})
+    }
+
+    async findByEmail(email: string) : Promise<User>{
+        
+        
+            const User = await this.userRepository.findOneBy({email})
+    
+        if (User){
+            return User;
+
+
+        }throw new HttpException('User with this emil does not exist', HttpStatus.NOT_FOUND)
+    
+}
 
     
    
-    create(createUser: User): Observable<User> {
-        return from(this.userRepository.save(createUser))
+    async create(createUser: CreateUserDto): Promise<User> {
+        console.log(createUser)
+        return await this.userRepository.save(this.userRepository.create(createUser ))
     }
 
-    updateUser(id: number, post: User):Observable<UpdateResult> {
+    updateUser(id: number, post: CreateUserDto):Observable<UpdateResult> {
         return from(this.userRepository.update(id, post))
     }
 
-    deleteUser(id:number):Observable<DeleteResult>{
-        return from(this.userRepository.delete(id ))
+    async deleteUser(id:number): Promise<void>{
+        await this.userRepository.delete(id)
     }
 }   
-
-    
-
-
-    //     //const user = new User()
-    //     // user.firstname =
-    //     // const queryRunner = this.dataSource.createQueryRunner();
-    //     // await queryRunner.connect();
-    //     // await queryRunner.startTransaction()
-    //     try{
-    //         // await queryRunner.manager.save(user)
-    //         // await queryRunner.commitTransaction()
-
-    //     }catch (err){
-    //         // await queryRunner.rollbackTransaction()
-
-    //     } finally{
-    //         //await queryRunner.release();
-
-    //     }
-    //}
-
-    // findAll(): Promise<User[]> {
-    //     return 
-    //     //this.userRepository.find();
-    // }
-
-    // findOne(id: string): Promise<User> {
-    //     return this.userRepository.findOneBy({ id });
-    // }
-    // async remove(id: string): Promise<void> {
-    //  await this.userRepository.delete(id);
-    // }
-    //}

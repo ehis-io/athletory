@@ -1,8 +1,8 @@
 .footer {
-    color: #fff;
-    background-color: #800080;
+    color: #eef1ff;
+    background-color: #662d91;
     padding: 10px;
-
+    font-family: "Josefin Sans", sans-serif;
     text-align: center;
 }
 .footerTop {

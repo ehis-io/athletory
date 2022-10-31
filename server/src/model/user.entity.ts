@@ -1,16 +1,20 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert } from 'typeorm';
+import * as bcrypt from 'bcrypt'
 
-@Entity()
+@Entity({name:'user'})
 export class User {
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
-    @Column()
+    @Column({nullable:true})
     firstname: string;
 
     @Column()
     lastname: string;
-    @Column()
+
+
+    @Column({default:''})
     photo_id:string;
 
     @Column({default :''})
@@ -18,11 +22,21 @@ export class User {
 
     @Column()
     email: string;
+    
+    @Column()
+    password:string;
 
     @Column({type :'timestamp', default:()=> 'CURRENT_TIMESTAMP'})
     date: Date;
 
-    @Column({ default: true })
-    isActive: boolean;
-
+    @BeforeInsert()
+    async hashPassword(): Promise<void>{
+        const salt = await bcrypt.genSalt()
+        if(this.password){
+            
+            this.password= await bcrypt.hash(this.password, salt)
+    }
+}
+    //@Column({ default: true })
+    //isActive: boolean;
 }

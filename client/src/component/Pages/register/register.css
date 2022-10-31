@@ -1,4 +1,5 @@
 .register {
+  
   height: calc(100vh - 50px);
   display: flex;
   flex-direction: column;
@@ -10,6 +11,8 @@
     ),
     url("https://images.pexels.com/photos/317355/pexels-photo-317355.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-size: cover;
+  padding: 15px 0 15px 0;
+  
 }
 
 .registerTitle {
@@ -18,8 +21,10 @@
 
 .registerForm {
   margin-top: 20px;
+  
   display: flex;
   flex-direction: column;
+  
 }
 
 .registerForm > label {
@@ -50,12 +55,14 @@
 
 .registerLoginButton {
   position: absolute;
-  top: 60px;
+  top: 80px;
   right: 20px;
   background-color: lightcoral;
   cursor: pointer;
-  padding: 10px;
+  margin-top: 10px;
+  padding:15px 30px 15px 30px;
   border: none;
   color: white;
   border-radius: 10px;
+  margin-top: 50px;
 }
