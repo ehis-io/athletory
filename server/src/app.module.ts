@@ -5,8 +5,8 @@ import { UserModule } from './user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PostModule } from './post/post.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from './auth/authentication.module';
-import { AuthService } from './auth/authentication.service';
+import { AuthModule } from './auth/auth.module';
+import { AuthService } from './auth/auth.service';
 import { JwtService } from '@nestjs/jwt';
 
 

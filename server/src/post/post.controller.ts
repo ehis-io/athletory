@@ -6,8 +6,9 @@ import { DeleteResult, UpdateResult } from 'typeorm';
 
 @Controller('post')
 export class PostController {
-    constructor(private readonly postService: PostService){}
-    @Get('findAll')
+    constructor( private readonly postService: PostService ) { }
+    
+    @Get('all')
     getAllPost(){
         return this.postService.findAll()
     }

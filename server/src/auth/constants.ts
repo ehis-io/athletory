@@ -1,6 +1,6 @@
-import * as dotenv from "dotenv"
-dotenv.config()
+import { JwtModuleOptions } from "@nestjs/jwt"
 
-export const jwtConstants = {
-  secret: process.env.SECRET_KEY
+export const jwtConfig:JwtModuleOptions = {
+    secret: 'secret',
+    signOptions:{expiresIn:'100s'},
 }

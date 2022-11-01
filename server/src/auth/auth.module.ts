@@ -4,10 +4,9 @@ import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/model/user.entity';
 import { UserModule } from 'src/user/user.module';
-import { UserService } from 'src/user/user.service';
-import { AuthenticationController } from './authentication.controller';
-import { AuthService } from './authentication.service';
-import { jwtConstants } from './constants';
+import { AuthenticationController } from './auth.controller';
+import { AuthService } from './auth.service';
+import { jwtConfig} from './constants';
 import { LocalStrategy } from './local.strategy';
 
 
@@ -19,13 +18,15 @@ import { LocalStrategy } from './local.strategy';
     TypeOrmModule.forFeature([User]),
     UserModule,
     PassportModule,
-    JwtModule.register({
-      secret: jwtConstants.secret,
-      signOptions:{expiresIn:'100s'},
-    }),
+    JwtModule.registerAsync( {
+      useFactory: () => ( {
+        secret: 'secret',
+      })
+
+    
+    } ),
   ],
-  controllers:[AuthenticationController,],
-  providers:[AuthService, LocalStrategy],
+  providers:[AuthService, LocalStrategy, ],
   exports:[AuthService]
 
 })

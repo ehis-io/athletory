@@ -1,6 +1,12 @@
 import "./singlePost.css";
 import img from "../../asset/background.jpg";
-export default function SinglePost() {
+import axios from "axios";
+
+
+export default function SinglePost () {
+    const postId = 1
+    const baseUrl = `http://localhost:3030/post?${ID=postId}`
+    axios.get(baseUrl)
     return (
         <>
             <div className="singlePost">

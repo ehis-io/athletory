@@ -22,11 +22,13 @@ function App() {
         <>
             <TopBar />
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="login" element={<Login />} />
-                <Route path="register" element={<Register />} />
+                <Route path="/" element={ <Home /> } />
+                
+                <Route path="login" element={ <Login /> } />
+                
+                <Route path="register" element={ <Register /> } />
+                
                 <Route
-                    exact
                     path="write"
                     element={
                         currentUser ? (
@@ -36,23 +38,29 @@ function App() {
                         )
                     }
                 />
+
+                
                 <Route
                     path="login"
                     elememt={
                         !currentUser ? <Login /> : <Navigate replace to={"/"} />
                     }
                 />
-                <Route path="/post/:id" element={<Single />} />
+
+
+                {/* <Route path="post/:id" element={ <Single /> } />*/ }
+                
                 <Route
-                    path="/write"
+                    path="/post:id"
                     element={
                         currentUser ? (
-                            <Write />
+                            <Single />
                         ) : (
                             <Navigate replace to={"/login"} />
                         )
                     }
                 />
+
                 <Route
                     path="/settings"
                     element={
