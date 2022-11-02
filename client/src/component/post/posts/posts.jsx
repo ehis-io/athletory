@@ -1,7 +1,8 @@
 import "./posts.css";
 import Post from "../post";
 
-export default function Posts() {
+export default function Posts () {
+    
     return (
         <>
             <div className="posts">

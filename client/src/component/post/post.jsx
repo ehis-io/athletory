@@ -1,7 +1,43 @@
 import "./post.css";
 import img from "../../asset/joy.jpg";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-export default function Post() {
+export default function Post () {
+
+    
+    const [post, setPost] = useState({
+        "post_title":"",
+        "post_text":"",
+        "post_image_id":"",
+        "user_id":""
+    })
+
+    const [loading, setLoading] = useState(true)
+    const postId = 1
+    const baseUrl = `http://localhost:3030/post/${postId}`
+
+    useEffect(() => {
+
+        const fetchPost = async () => {
+            axios.get(baseUrl).then(res => {
+                setPost(res.data)
+                console.log(post)
+            })
+                .catch(function (error) {
+                    console.log(error)
+        
+                })
+                .then(function () {
+                    setLoading(false)
+                })
+        }
+        fetchPost()
+        console.log(post)
+
+    }, [])
+
+
     return (
         <>
             <div className="post">

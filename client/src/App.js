@@ -9,6 +9,7 @@ import Register from "./component/Pages/register/Register";
 import Settings from "./component/Pages/settings/Settings";
 import { Routes, Route, Navigate } from "react-router-dom";
 import {useState} from 'react'
+import Posts from "./component/post/posts/posts";
 
 
 //let navigate = useNavigate();
@@ -48,13 +49,20 @@ function App() {
                 />
 
 
-                {/* <Route path="post/:id" element={ <Single /> } />*/ }
+                <Route
+                    path="post/:id"
+                    element={
+                        currentUser ?(
+                            <Single /> 
+                        ) : (<Navigate replace to={ "/login" } />
+                        )
+                    } />
                 
                 <Route
-                    path="/post:id"
+                    path="/post"
                     element={
                         currentUser ? (
-                            <Single />
+                            <Posts />
                         ) : (
                             <Navigate replace to={"/login"} />
                         )

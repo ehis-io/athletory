@@ -3,14 +3,15 @@ import { from, Observable } from 'rxjs';
 import { PostService } from './post.service';
 import { PostEntity } from 'src/model/post.entity';
 import { DeleteResult, UpdateResult } from 'typeorm';
+import { PostDto } from 'src/dto/create_post.dto';
 
 @Controller('post')
 export class PostController {
-    constructor( private readonly postService: PostService ) { }
+    constructor( private postService: PostService ) { }
     
-    @Get('all')
-    getAllPost(){
-        return this.postService.findAll()
+    @Get('findAll')
+    async getAllPost(){
+        return await this.postService.findAll()
     }
 
     @Get(':id')
@@ -21,8 +22,8 @@ export class PostController {
     }
     
     @Post('post')
-    createPost(@Body() post :PostEntity): Observable<PostEntity>{
-        return from(this.postService.create(post))
+    async createPost(@Body() postDto :PostDto): Promise<PostEntity>{
+        return await this.postService.create(postDto)
     }
     
     @Put(':id')
