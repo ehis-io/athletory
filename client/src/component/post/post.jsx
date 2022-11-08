@@ -5,68 +5,56 @@ import axios from "axios";
 
 export default function Post () {
 
-    
-    const [post, setPost] = useState({
-        "post_title":"",
-        "post_text":"",
-        "post_image_id":"",
-        "user_id":""
-    })
+    const baseUrl = `http://localhost:3030/post/findAll`
 
-    const [loading, setLoading] = useState(true)
-    const postId = 1
-    const baseUrl = `http://localhost:3030/post/${postId}`
+    const [post, setPost] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
+
+    //Getting data
+    
+    const data = async () => {
+        setLoading(true)
+
+        try {
+            
+            const res = await axios.get(baseUrl)
+            setPost(await res.data)
+            setLoading(true)
+        
+                
+        } catch (error) {
+            console.log(error)
+            setError(error.message)
+        }
+    }
+
 
     useEffect(() => {
-
-        const fetchPost = async () => {
-            axios.get(baseUrl).then(res => {
-                setPost(res.data)
-                console.log(post)
-            })
-                .catch(function (error) {
-                    console.log(error)
-        
-                })
-                .then(function () {
-                    setLoading(false)
-                })
-        }
-        fetchPost()
-        console.log(post)
-
-    }, [])
-
+        data()
+    
+    }, [post])
 
     return (
         <>
-            <div className="post">
-                <img className="postImage" src={img} alt="" />
-                <div className="postInfo">
+            { post.map((posts) => (
+                <div className="post" key = {posts.post_id}>
+                    <img className="postImage" src={ img } alt="" />
+                    <div className="postInfo">
                     <span className="category"> Sport Media</span>
                     <span className="category"> Biography</span>
 
-                    <div className="postTitle">The Struggle of The Athlete</div>
-
-                    <div className="postDate"> posted 1 hour ago</div>
+                    <div className="postTitle">{ posts.post_title}</div>
+                    <div className="postDate"> {posts.post_date}</div>
 
                     <div className="description">
-                        <p className="postDescription">
-                            {" "}
-                            It is a long established fact that a reader will be
-                            distracted by the readable content of a page when
-                            looking at its layout. The point of using Lorem
-                            Ipsum is that it has a more-or-less normal
-                            distribution of letters, as opposed to using
-                            'Content here, content here', making it look like
-                            readable English. Many desktop publishing packages
-                            and web page editors now use Lorem Ipsum as their
-                            default model text, and a search for 'lorem ipsum'
-                            will uncover many web sites still in their infancy.
-                        </p>
+                        <p className="postDescription">{ posts.post_text}</p>
+                    </div>
                     </div>
                 </div>
-            </div>
+            ))
+            }
+
         </>
     );
 }

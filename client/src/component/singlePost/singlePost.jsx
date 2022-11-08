@@ -29,7 +29,7 @@ export default function SinglePost () {
         const fetchPost = async () => {
             axios.get(baseUrl).then(res => {
                 setPost(res.data)
-                console.log(post)
+                //console.log(post)
             })
                 .catch(function (error) {
                     console.log(error)
@@ -40,7 +40,7 @@ export default function SinglePost () {
                 })
         }
         fetchPost()
-        console.log(post)
+        //console.log(post)
 
     }, [])
 
@@ -61,7 +61,7 @@ export default function SinglePost () {
                             {" "}
                             Author: <b>Faith Fidelis</b>
                         </span>
-                        <span className="date"> { post.post_date }</span>
+                        <span className="date"> { post.post_date}</span>
                     </div>
                     <p className="singlePostDescription">
                         {post.post_text}
