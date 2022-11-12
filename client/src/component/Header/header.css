@@ -1,6 +1,7 @@
 .header {
     margin: 40px 3px 0px 0px;
     padding-top: 70px;
+    padding-bottom: 20px;
 }
 .headerTitle {
     display: flex;

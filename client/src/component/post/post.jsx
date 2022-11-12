@@ -45,7 +45,7 @@ export default function Post () {
                     <span className="category"> Biography</span>
 
                     <div className="postTitle">{ posts.post_title}</div>
-                    <div className="postDate"> {posts.post_date}</div>
+                    <div className="postDate"> {posts.post_date.split('T', 1)}</div>
 
                     <div className="description">
                         <p className="postDescription">{ posts.post_text}</p>

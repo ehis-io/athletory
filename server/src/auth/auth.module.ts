@@ -7,6 +7,7 @@ import { UserModule } from 'src/user/user.module';
 import { AuthenticationController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { jwtConfig} from './constants';
+import { JwtStrategy } from './jwt.strategy';
 import { LocalStrategy } from './local.strategy';
 
 
@@ -20,13 +21,13 @@ import { LocalStrategy } from './local.strategy';
     PassportModule,
     JwtModule.registerAsync( {
       useFactory: () => ( {
-        secret: 'secret',
+        secret: jwtConfig.secret,
       })
 
     
     } ),
   ],
-  providers:[AuthService, LocalStrategy, ],
+  providers:[AuthService, LocalStrategy, JwtStrategy],
   exports:[AuthService]
 
 })

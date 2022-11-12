@@ -15,7 +15,7 @@ import Posts from "./component/post/posts/posts";
 //let navigate = useNavigate();
 //const baseUrl = "http://localhost:3000/"
 function App() {
-    const currentUser = true;
+    const currentUser = false;
     //const [data, setData] = useState(props.data)
 
     //const FormData = data.map((data)) =>()

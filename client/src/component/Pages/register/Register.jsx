@@ -19,24 +19,25 @@ export default function Register() {
     console.log(user)
   }
   
-  function handleSubmit(e){
+  function handleSubmit (e) {
     e.preventDefault()
     console.log(user)
 
     
 
-    axios.post(userUrl, user).then(res=>{
+    axios.post(userUrl, user).then(res => {
       console.log(res)
       console.log(res.data)
       
-    }
-    )
+
     setUser = ({
       
-      "firstname":"",
-      "lastname":"",
-      "email":"",
-      "password":"",
+      "firstname": "",
+      "lastname": "",
+      "email": "",
+      "password": "",
+    })
+
     })
   }
     return (
