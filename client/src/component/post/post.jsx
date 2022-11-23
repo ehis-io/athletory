@@ -10,6 +10,8 @@ export default function Post () {
     const [post, setPost] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
+    const auth_key = JSON.stringify(localStorage.getItem('access_token'))
+    //console.log(auth_key)
 
     //Getting data
     
@@ -18,7 +20,18 @@ export default function Post () {
 
         try {
             
-            const res = await axios.get(baseUrl)
+            const res = await axios.get(baseUrl,
+            {
+                headers: {
+        
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': `Bearer ${auth_key}`,
+                    'Accept': 'application/json'
+        
+                }
+            })
+            
             setPost(await res.data)
             setLoading(true)
         
@@ -38,7 +51,7 @@ export default function Post () {
     return (
         <>
             { post.map((posts) => (
-                <div className="post" key = {posts.post_id}>
+                <div className="post" key = {posts.id}>
                     <img className="postImage" src={ img } alt="" />
                     <div className="postInfo">
                     <span className="category"> Sport Media</span>

@@ -16,11 +16,10 @@ export class AppController {
     }
 
     @UseGuards( JwtAuthGuard )
+    @Get('post')
     @Get( 'user' )
     getProfile( @Request() req: any ) {
         //console.log(req)
         return req.user
     }
 }
-
-

@@ -29,15 +29,17 @@ export class AuthService {
     return null
   }
   async login( user:any) {
-    console.log( 'Trying to Login' )
+    console.log( 'Logging in' )
     
-    console.log('trying to sign')
+    //console.log('trying to sign')
     return {
       access_token: await this.jwtService.signAsync( {
         username: user.firstname,
         sub: user.id 
       }, {secret: jwtConfig.secret}
-      )
+      ),
+      user,
+      
     }
   }
 }

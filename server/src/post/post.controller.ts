@@ -22,7 +22,8 @@ export class PostController {
     }
     
     @Post('post')
-    async createPost(@Body() postDto :PostDto): Promise<PostEntity>{
+    async createPost( @Body() postDto: PostDto ): Promise<PostEntity>{
+        console.log(postDto)
         return await this.postService.create(postDto)
     }
     
