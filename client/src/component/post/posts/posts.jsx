@@ -9,7 +9,7 @@ export default function Posts(post) {
         <>
             <div className="posts">
             
-                <Post blog={ post } key={ post.id } />
+                <Post blog={ post } key={ post.id} />
                 {/* <Post blog={ post } key={ post.id } />
                 <Post blog={ post } key={ post.id } />
                 <Post blog={ post } key={ post.id } />

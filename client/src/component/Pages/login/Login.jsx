@@ -1,14 +1,29 @@
 import "./login.css";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 const loginUrl= 'http://localhost:3030/auth/login'
 
 
 export default function Login () {
+  const [token, setToken]= useState({
+    
+  })
+
   const [login, setLogin] = useState({
     'email': '',
     'password':''
   })
+  
+  const [user, setUser] = useState(false)
+  useEffect(() => {
+    if (
+      JSON.stringify(
+        localStorage.getItem('access_token') == token
+      )
+    ) {
+      setUser(true)
+    }
+  }, [])
 
   function handle (e) {
     setLogin({ ...login, [e.target.id]: e.target.value })
@@ -18,11 +33,16 @@ export default function Login () {
     e.preventDefault()
     //console.log(login)
   
-    axios.post(loginUrl, login).then(res => {
-      console.log(res.data)
+    axios.post(
+      loginUrl,
+      login
+    ).then(res => {
+      setToken(res.data.access_token)
+      //console.log(res.data)
+      localStorage.setItem('access_token', token)
 
     })
-}
+  }
 
   return (
     <div className="login">

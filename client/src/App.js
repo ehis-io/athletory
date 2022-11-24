@@ -8,24 +8,30 @@ import Login from "./component/Pages/login/Login";
 import Register from "./component/Pages/register/Register";
 import Settings from "./component/Pages/settings/Settings";
 import { Routes, Route, Navigate } from "react-router-dom";
-import {useState} from 'react'
 import Posts from "./component/post/posts/posts";
 
+//const auth_key =JSON.stringify(localStorage.getItem('access_token'))
 
-//let navigate = useNavigate();
-//const baseUrl = "http://localhost:3000/"
-function App() {
-    const currentUser = false;
-    //const [data, setData] = useState(props.data)
 
-    //const FormData = data.map((data)) =>()
+function App (user){
+    //console.log(auth_key)
+    
+    if (user) {
+        var currentUser = true
+        console.log('Logged in')
+    } else
+    {
+        var currentUser = false
+        console.log('please log in')
+    }
+
     return (
         <>
             <TopBar />
             <Routes>
                 <Route path="/" element={ <Home /> } />
                 
-                <Route path="login" element={ <Login /> } />
+                <Route path="login" element={ <Login /> } /> 
                 
                 <Route path="register" element={ <Register /> } />
                 
